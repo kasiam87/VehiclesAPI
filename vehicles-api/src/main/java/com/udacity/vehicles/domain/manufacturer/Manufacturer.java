@@ -2,12 +2,26 @@ package com.udacity.vehicles.domain.manufacturer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
 /**
  * Declares class to hold car manufacturer information.
  */
 @Entity
 public class Manufacturer {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Manufacturer that = (Manufacturer) o;
+        return Objects.equals(code, that.code) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name);
+    }
 
     @Id
     private Integer code;

@@ -15,8 +15,8 @@ public class PriceClient {
 
     private final WebClient client;
 
-    public PriceClient(WebClient pricing) {
-        this.client = pricing;
+    public PriceClient(WebClient webClientPricing) {
+        this.client = webClientPricing;
     }
 
     // In a real-world application we'll want to add some resilience
@@ -35,8 +35,7 @@ public class PriceClient {
             Price price = client
                     .get()
                     .uri(uriBuilder -> uriBuilder
-                            .path("services/price/")
-                            .queryParam("vehicleId", vehicleId)
+                            .path("prices/" + vehicleId)
                             .build()
                     )
                     .retrieve().bodyToMono(Price.class).block();
