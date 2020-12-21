@@ -58,18 +58,9 @@ public class VehiclesApiApplication {
         return WebClient.create(endpoint);
     }
 
-    /**
-     * Web Client for the pricing API
-     * @param endpoint where to communicate for the pricing API
-     * @return created pricing endpoint
-     */
     @Bean
     @LoadBalanced
-    /*public WebClient webClientPricing(@Value("${pricing.endpoint}") String endpoint) {
-        return WebClient.create(endpoint);
-    }*/
     public WebClient.Builder webClientPricingBuilder(){
         return WebClient.builder();
     }
-
 }
