@@ -1,16 +1,35 @@
-# ND035-P02-VehiclesAPI-Project
+# VehiclesAPI
 
-Project repository for JavaND Project 2, where students implement a Vehicles API using Java and Spring Boot that can communicate with separate location and pricing services.
+## How to run project
 
-## Instructions
+- Start Eureka (can use run.sh file)
+- start maps, pricing, and vehicles apis (`mvn clean spring-boot:run`)
 
-Check each component to see its details and instructions. Note that all three applications
-should be running at once for full operation. Further instructions are available in the classroom.
+## Examples of usage
+Create car:
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"condition":"NEW","details":{"body":"sedan","model":"Impala","manufacturer":{"code":101,"name":"Chevrolet"},"numberOfDoors":4,"fuelType":"Gasoline","engine":"3.6L V6","mileage":32280,"modelYear":2018,"productionYear":2018,"externalColor":"white"},"location":{"lat":40.73061,"lon":-73.935242,"address":null,"city":null,"state":null,"zip":null},"price":null}' \
+  http://localhost:8080/cars
+  
+Get car:
+curl --header "Content-Type: application/json" \
+--request GET \
+http://localhost:8080/cars/1
 
-- [Vehicles API](vehicles-api/README.md)
-- [Pricing Service](pricing-service/README.md)
-- [Boogle Maps](boogle-maps/README.md)
+Get cars:
+curl --header "Content-Type: application/json" \
+--request GET \
+http://localhost:8080/cars
 
-## Dependencies
+Update car:
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id":1,"condition":"USED","details":{"body":"sedan","model":"Impala","manufacturer":{"code":101,"name":"Chevrolet"},"numberOfDoors":4,"fuelType":"Gasoline","engine":"3.6L V6","mileage":32280,"modelYear":2018,"productionYear":2018,"externalColor":"white"},"location":{"lat":40.73061,"lon":-73.935242,"address":null,"city":null,"state":null,"zip":null},"price":null}' \
+  http://localhost:8080/cars
+  
+Delete car:
+curl --request DELETE \
+http://localhost:8080/cars/1
 
-The project requires the use of Maven and Spring Boot, along with Java v11.
+  
